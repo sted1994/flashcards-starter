@@ -5,6 +5,10 @@ const util = require('./util');
 class Game {
   constructor() {}
 
+  currentRound(){
+    const
+  }
+
   printMessage(deck, round) {
     console.log(`Welcome to FlashCards! You are playing with ${deck.countCards()} cards.
 -----------------------------------------------------------------------`)
