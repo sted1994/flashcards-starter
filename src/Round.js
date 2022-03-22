@@ -23,7 +23,17 @@ class Round {
     this.getCurrentCard();
     this.turns++;
     return currentTurn.giveFeedback();
-    // return currentTurn;
+  }
+
+  calculatePercentageCorrect(){
+    return ((this.incorrectGuesses.length / this.deck.length) * 100)
+  }
+
+  endRound(){
+    var percentage = this.calculatePercentageCorrect();
+    console.log(`** Round over! ** You answered ${percentage} of the questions correctly!`)
+    return `** Round over! ** You answered ${percentage} of the questions correctly!`
+
   }
 }
 
