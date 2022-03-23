@@ -4,11 +4,11 @@ class Round {
   constructor(deck){
     this.deck = deck.cards;
     this.turns = 0;
-    this.currentCard = this.getCurrentCard();
+    this.currentCard = this.returnCurrentCard();
     this.incorrectGuesses = [];
   }
 
-  getCurrentCard(){
+  returnCurrentCard(){
       this.currentCard = this.deck[this.turns]
       return this.deck[this.turns];
   }
@@ -20,7 +20,7 @@ class Round {
       this.incorrectGuesses.push(this.deck[this.turns].id);
 
     }
-    this.getCurrentCard();
+    this.returnCurrentCard();
     this.turns++;
     return currentTurn.giveFeedback();
   }
@@ -31,8 +31,7 @@ class Round {
 
   endRound(){
     var percentage = this.calculatePercentageCorrect();
-    console.log(`** Round over! ** You answered ${percentage} of the questions correctly!`)
-    return `** Round over! ** You answered ${percentage} of the questions correctly!`
+    return `** Round over! ** You answered ${percentage}% of the questions correctly!`
 
   }
 }

@@ -29,7 +29,7 @@ turn = turn = new Turn();
 
 
   it('Should have a method that returns current card', function(){
-    expect(round.getCurrentCard()).to.equal(round.deck[0]);
+    expect(round.returnCurrentCard()).to.equal(round.deck[0]);
   })
 
   it('Should increment turns count', function(){
