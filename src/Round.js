@@ -4,7 +4,7 @@ class Round {
   constructor(deck){
     this.deck = deck.cards;
     this.turns = 0;
-    this.currentCard = this.deck[this.turns];
+    this.currentCard = this.getCurrentCard();
     this.incorrectGuesses = [];
   }
 
@@ -14,7 +14,7 @@ class Round {
   }
 
   takeTurn(guess){
-    const currentTurn = new Turn(guess, this.deck[this.turns]);
+    const currentTurn = new Turn(guess, this.currentCard);
     const checkguess = currentTurn.evaluateGuess(guess);
     if(!checkguess){
       this.incorrectGuesses.push(this.deck[this.turns].id);

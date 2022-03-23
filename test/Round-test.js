@@ -8,25 +8,31 @@ const Turn = require('../src/Turn');
 
 describe('Round', function(){
 
+
+let card1;
+let card2;
+let card3;
+let deck;
+let round;
+let turn;
+
+beforeEach(() => {
+card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
+card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
+cards = [card1, card2, card3];
+deck = new Deck(cards);
+round = new Round(deck);
+turn = turn = new Turn();
+})
+
+
+
   it('Should have a method that returns current card', function(){
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    const cards = [card1, card2, card3];
-    const deck = new Deck(cards);
-    const round = new Round(deck);
     expect(round.getCurrentCard()).to.equal(round.deck[0]);
   })
 
   it('Should increment turns count', function(){
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    const cards = [card1, card2, card3];
-    const deck = new Deck(cards);
-    const turn = new Turn();
-    const round = new Round(deck);
-
     round.takeTurn(turn.guess);
     round.takeTurn(turn.guess);
     round.takeTurn(turn.guess);
@@ -34,49 +40,21 @@ describe('Round', function(){
   })
 
   it('Should add incorrect guesses to incorect guesses array', function(){
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    const cards = [card1, card2, card3];
-    const deck = new Deck(cards);
-    const round = new Round(deck);
-    const turn = new Turn('object', round.currentCard);
     round.takeTurn('sea otte');
     expect(round.incorrectGuesses).to.include(round.currentCard.id);
   })
 
   it('Should not add correct guesses to incorect guesses array', function(){
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    const cards = [card1, card2, card3];
-    const deck = new Deck(cards);
-    const round = new Round(deck);
-    const turn = new Turn('object', round.currentCard);
     round.takeTurn('sea otter');
     expect(round.incorrectGuesses).to.not.include(round.currentCard.id);
   })
 
   it('Should give feedback for correct answer', function(){
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    const cards = [card1, card2, card3];
-    const deck = new Deck(cards);
-    const round = new Round(deck);
-    const turn = new Turn('object', round.currentCard);
     expect(round.takeTurn('sea otter')).to.equal('correct');
 
   })
 
   it('Should be able to tell you the percentage you got correct', function(){
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    const cards = [card1, card2, card3];
-    const deck = new Deck(cards);
-    const round = new Round(deck);
-    const turn = new Turn('object', round.currentCard);
     round.takeTurn('sea otte');
     round.takeTurn('gallbladder');
     round.takeTurn('Fitzgerald');
@@ -85,13 +63,6 @@ describe('Round', function(){
   })
 
   it('Should inform you when you complete a round and tell you precentage correct', function(){
-    const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    const card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    const cards = [card1, card2, card3];
-    const deck = new Deck(cards);
-    const round = new Round(deck);
-    const turn = new Turn('object', round.currentCard);
     round.takeTurn('sea otte');
     round.takeTurn('gallbladder');
     round.takeTurn('Fitzgerald');
