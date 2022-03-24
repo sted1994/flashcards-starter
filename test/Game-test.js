@@ -28,21 +28,22 @@ describe('Game', function(){
   deck = new Deck(cards);
   round = new Round(deck);
   turn = new Turn();
-  newGame = new Game(round)
+  newGame = new Game()
   prototypeQuestions = data.prototypeData;
+  newGame.start()
   })
 
 
-  // it('should keep track of rounds', function(){
-  //   newGame.currentRound.takeTurn();
-  //   expect(newGame.currentRound.turns).to.equal(1);
-  // })
-  //
-  it('Should create cards', function(){
-    newGame.start();
-    // expect(newGame.currentRound.deck.length).to.equal(prototypeQuestions.length)
+  it('Should create an instance of card', function(){
+    expect(newGame.cards[0]).to.be.an.instanceof(Card)
   })
 
+  it('Should create an instance of deck', function(){
+    expect(newGame.deck).to.be.an.instanceof(Deck)
+  })
 
-
+  it('Should create an instance of round', function(){
+    console.log(newGame)
+    expect(newGame.round).to.be.an.instanceof(Round)
+  })
 })

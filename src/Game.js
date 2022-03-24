@@ -6,17 +6,22 @@ const Card = require('./Card');
 const Deck = require('./Deck');
 class Game {
   constructor() {
+    this.cards;
+    this.deck;
+    this.round;
   }
 
   start(){
-    let newDeck = [];
-    prototypeQuestions.forEach((card) => {
-      newDeck.push(new Card(card.id, card.question, card.answers, card.correctAnswer))
+    const cards = prototypeQuestions.map((card) => {
+      return new Card(card.id, card.question, card.answers, card.correctAnswer)
     })
-    const deck = new Deck(newDeck)
-    const newRound = new Round(deck)
-    this.printMessage(deck, newRound)
-    this.printQuestion(newRound)
+    this.cards = cards;
+    const deck = new Deck(cards);
+    this.deck = deck;
+    const round = new Round(deck);
+    this.round = round;
+    this.printMessage(deck, round)
+    this.printQuestion(round)
   }
 
   printMessage(deck, round) {

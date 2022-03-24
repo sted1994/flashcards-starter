@@ -23,7 +23,7 @@ card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzg
 cards = [card1, card2, card3];
 deck = new Deck(cards);
 round = new Round(deck);
-turn = turn = new Turn();
+turn = new Turn();
 })
 
 
@@ -59,7 +59,7 @@ turn = turn = new Turn();
     round.takeTurn('gallbladder');
     round.takeTurn('Fitzgerald');
 
-    expect(round.calculatePercentageCorrect()).to.equal(((round.incorrectGuesses.length / round.deck.length) * 100));
+    expect(round.calculatePercentageCorrect()).to.equal(66);
   })
 
   it('Should inform you when you complete a round and tell you precentage correct', function(){
@@ -67,7 +67,7 @@ turn = turn = new Turn();
     round.takeTurn('gallbladder');
     round.takeTurn('Fitzgerald');
 
-    expect(round.endRound()).to.equal(`** Round over! ** You answered ${((round.incorrectGuesses.length / round.deck.length) * 100)} of the questions correctly!`)
+    expect(round.endRound()).to.equal(`** Round over! ** You answered ${round.calculatePercentageCorrect()}% of the questions correctly!`)
   })
 
 })
