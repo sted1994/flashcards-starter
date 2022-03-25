@@ -21,6 +21,7 @@ describe('Game', function(){
   let prototypeQuestions;
 
   beforeEach(() => {
+  const prototypeQuestions = data.prototypeData;
   card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
   card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
   card3 = new Card(12, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
@@ -29,8 +30,9 @@ describe('Game', function(){
   round = new Round(deck);
   turn = new Turn();
   newGame = new Game()
-  prototypeQuestions = data.prototypeData;
-  newGame.start()
+  newGame.makeCards();
+  newGame.makeDeck();
+  newGame.makeRound();
   })
 
 
@@ -43,7 +45,6 @@ describe('Game', function(){
   })
 
   it('Should create an instance of round', function(){
-    console.log(newGame)
     expect(newGame.round).to.be.an.instanceof(Round)
   })
 })

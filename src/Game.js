@@ -12,16 +12,11 @@ class Game {
   }
 
   start(){
-    const cards = prototypeQuestions.map((card) => {
-      return new Card(card.id, card.question, card.answers, card.correctAnswer)
-    })
-    this.cards = cards;
-    const deck = new Deck(cards);
-    this.deck = deck;
-    const round = new Round(deck);
-    this.round = round;
-    this.printMessage(deck, round)
-    this.printQuestion(round)
+    this.makeCards();
+    this.makeDeck();
+    this.makeRound();
+    this.printMessage(this.deck, this.round)
+    this.printQuestion(this.round)
   }
 
   printMessage(deck, round) {
@@ -31,6 +26,23 @@ class Game {
 
   printQuestion(round) {
       util.main(round);
+  }
+
+  makeCards(){
+    const cards = prototypeQuestions.map((card) => {
+      return new Card(card.id, card.question, card.answers, card.correctAnswer)
+    })
+    this.cards = cards;
+  }
+
+  makeDeck(){
+    const deck = new Deck(this.cards);
+    this.deck = deck;
+  }
+
+  makeRound(){
+    const round = new Round(this.deck);
+    this.round = round;
   }
 }
 
